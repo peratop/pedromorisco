@@ -1,0 +1,127 @@
+.card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #e8f5e9;
+}
+
+.pokemon-card {
+  position: relative;
+  width: 300px;
+  height: 450px;
+  border-radius: 20px;
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  box-shadow: 
+    0 0 15px rgba(46, 125, 50, 0.6),
+    0 0 30px rgba(76, 175, 80, 0.4);
+  border: 3px solid #81c784;
+}
+
+.pokemon-card.hovered {
+  transform: rotateY(10deg) rotateX(5deg) scale(1.05);
+  box-shadow: 
+    0 0 25px rgba(46, 125, 50, 0.9),
+    0 0 50px rgba(76, 175, 80, 0.6);
+}
+
+.card-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pokemon-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.pokemon-card.hovered .pokemon-image {
+  transform: scale(1.08);
+}
+
+/* Efeitos de natureza */
+.nature-effects {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.leaf {
+  position: absolute;
+  font-size: 24px;
+  opacity: 0.7;
+  animation: float 6s infinite ease-in-out;
+}
+
+.leaf-1 {
+  top: 10%;
+  left: 20%;
+  animation-delay: 0s;
+}
+
+.leaf-2 {
+  top: 70%;
+  left: 80%;
+  animation-delay: 2s;
+}
+
+.leaf-3 {
+  top: 40%;
+  left: 10%;
+  animation-delay: 4s;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(10deg); }
+}
+
+/* Brilho no hover */
+.hover-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle at center,
+    rgba(102, 187, 106, 0.8) 0%,
+    rgba(102, 187, 106, 0) 70%
+  );
+  z-index: 1;
+}
+
+/* Raios de luz verde */
+.pokemon-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    to bottom right,
+    transparent 45%,
+    rgba(129, 199, 132, 0.3) 50%,
+    transparent 55%
+  );
+  animation: ray-rotate 8s linear infinite;
+  z-index: 0;
+}
+
+@keyframes ray-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
